@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'snipe/snipe-it',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'ed5476e7f01687317f47713745aed8bc7f741770',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1239,8 +1239,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1373,9 +1373,9 @@
             'dev_requirement' => false,
         ),
         'snipe/snipe-it' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ed5476e7f01687317f47713745aed8bc7f741770',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
