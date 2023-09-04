@@ -10,7 +10,7 @@ services:
     - "8084:80"
     volumes:
     - ./logs:/var/www/html/storage/logs
-    #- /home/snipeit/source:/var/www/html
+    - source:/var/www/html
     depends_on:
     - snipedb
     - redis
@@ -47,6 +47,13 @@ services:
 volumes:
   db: {}
   logs: {}
+  source:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/tungpx/source
+      o: bind
 
+    
 networks:
   snipeit-backend: {}
