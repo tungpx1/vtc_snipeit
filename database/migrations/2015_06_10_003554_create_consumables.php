@@ -37,6 +37,7 @@ class CreateConsumables extends Migration
             $table->integer('assigned_to')->nullable()->default(null);
             $table->timestamps();
             $table->integer('qty_checkedout')->nullable()->default(null);
+            $table->boolean('is_revoke')->nullable()->default(1);
         });
     }
 
