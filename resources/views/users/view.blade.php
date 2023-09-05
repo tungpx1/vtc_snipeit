@@ -797,8 +797,8 @@
             </table>
           </div>
         </div><!-- /accessories-tab -->
-
         <div class="tab-pane" id="consumables">
+        @if ($user->consumables->first()->pivot->is_revoke == 1)
           <div class="table-responsive">
             <table
                     data-cookie-id-table="userConsumableTable"
@@ -827,10 +827,8 @@
                  <th class="col-md-3">{{ trans('general.qty_checked') }}</th>
                  <th class="col-md-4 each-cost-column">{{ trans('general.each_cost') }}</th>
                   <th class="col-md-2">{{ trans('general.notes') }}</th>
-
                 </tr>
               </thead>
-          
               <tbody>
                 @foreach ($user->consumables as $consumable)
                 <tr>
@@ -843,15 +841,15 @@
                 </tr>
                 @endforeach
               </tbody>
-
           </table>
-      
           </div>
+          @else
+          <p>The user's related assets have been revoked!</p>
+          @endif
         </div><!-- /consumables-tab -->
 
         <div class="tab-pane" id="files">
           <div class="row">
-
             <div class="col-md-12 col-sm-12">
               <div class="table-responsive">
                   <table

@@ -333,6 +333,7 @@ class Consumable extends SnipeModel
         return $this->qty - $this->numCheckedOut(); 
     }
 
+
     /**
      * Query builder scope to order on company
      *

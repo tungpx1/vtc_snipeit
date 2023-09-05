@@ -237,6 +237,7 @@ class User extends SnipeModel implements AuthenticatableContract, AuthorizableCo
     {
         return $this->activated == 1;
     }
+    
 
     /**
      * Returns the full name attribute
@@ -312,12 +313,15 @@ class User extends SnipeModel implements AuthenticatableContract, AuthorizableCo
      * @since [v3.0]
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
+
+
+
     public function consumables()
     {
-        //return $this->belongsToMany(\App\Models\Consumable::class, 'consumables_users')->withPivot('id', 'qty_checkedout', 'created_at', 'note');
-        return $this->belongsToMany(\App\Models\Consumable::class, 'consumables_users', 'assigned_to', 'consumable_id')->withPivot('id', 'qty_checkedout', 'created_at', 'note');
-
+        return $this->belongsToMany(\App\Models\Consumable::class, 'consumables_users', 'assigned_to', 'consumable_id')->withPivot('id', 'qty_checkedout', 'created_at', 'note','is_revoke');
     }
+
+
     public function getConsumableCost()
     {
         $cost = 0;
@@ -327,6 +331,7 @@ class User extends SnipeModel implements AuthenticatableContract, AuthorizableCo
         return $cost;
     }
     
+
 
 
     /**
@@ -353,9 +358,9 @@ class User extends SnipeModel implements AuthenticatableContract, AuthorizableCo
         $licensesCount = $this->licenses()->count();
         $accessoriesCount = $this->accessories()->count();
         $consumablesCount = $this->consumables()->count();
-        
+            
         $totalCount = $assetsCount + $licensesCount + $accessoriesCount + $consumablesCount;
-    
+        
         return (int) $totalCount;
         }
 

@@ -726,7 +726,7 @@
         }
         return 'not an array';
     }
-
+    //Total cost all consumable for user
     function sumFormatter2(data) {
         if (Array.isArray(data)) {
             var field = this.field;

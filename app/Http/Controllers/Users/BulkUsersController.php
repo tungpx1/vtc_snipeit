@@ -204,7 +204,10 @@ class BulkUsersController extends Controller
         $assets = Asset::whereIn('assigned_to', $user_raw_array)->where('assigned_type', \App\Models\User::class)->get();
         $accessories = DB::table('accessories_users')->whereIn('assigned_to', $user_raw_array)->get();
         $licenses = DB::table('license_seats')->whereIn('assigned_to', $user_raw_array)->get();
-        $consumables = DB::table('consumables_users')->whereIn('assigned_to', $user_raw_array)->get();
+        //$consumables = DB::table('consumables_users')->whereIn('assigned_to', $user_raw_array)->get();
+
+        //update isRevoke
+        $consumables = DB::table('consumables_users')->whereIn('assigned_to', $user_raw_array)->update(['is_revoke' => false]);
 
         if ((($assets->count() > 0) && ((!$request->filled('status_id')) || ($request->input('status_id') == '')))) {
             return redirect()->route('users.index')->with('error', 'No status selected');
@@ -214,7 +217,7 @@ class BulkUsersController extends Controller
         $this->logItemCheckinAndDelete($assets, Asset::class);
         $this->logItemCheckinAndDelete($accessories, Accessory::class);
         $this->logItemCheckinAndDelete($licenses, License::class);
-        $this->logItemCheckinAndDelete($consumables, Consumable::class);
+        //$this->logItemCheckinAndDelete($consumables, Consumable::class);
 
 
         Asset::whereIn('id', $assets->pluck('id'))->update([
@@ -226,12 +229,14 @@ class BulkUsersController extends Controller
 
 
         LicenseSeat::whereIn('id', $licenses->pluck('id'))->update(['assigned_to' => null]);
-        ConsumableAssignment::whereIn('id', $consumables->pluck('id'))->delete();
+      
+        //ConsumableAssignment::whereIn('id', $consumables->pluck('id'))->delete();
+
 
 
         foreach ($users as $user) {
 
-            $user->consumables()->sync([]);
+            //$user->consumables()->sync([]);
             $user->accessories()->sync([]);
             if ($request->input('delete_user')=='1') {
                 $user->delete();
