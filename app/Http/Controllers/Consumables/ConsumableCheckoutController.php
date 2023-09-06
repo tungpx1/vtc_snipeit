@@ -73,15 +73,15 @@ class ConsumableCheckoutController extends Controller
         $admin_user = Auth::user();
         $assigned_to = e($request->input('assigned_to'));
 
+
         // Check if the user exists
         if (is_null($user = User::find($assigned_to))) {
             // Redirect to the consumable management page with error
             return redirect()->route('consumables.checkout.show', $consumable)->with('error', trans('admin/consumables/message.checkout.user_does_not_exist'))->withInput();
         }
-
         // Update the consumable data
         $consumable->assigned_to = e($request->input('assigned_to'));
-        //for($i = 0; $i < $quantity; $i++){
+       
         $consumable->users()->attach($consumable->id, [
             'consumable_id' => $consumable->id,
             'user_id' => $admin_user->id,

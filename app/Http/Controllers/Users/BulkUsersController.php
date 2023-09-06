@@ -205,10 +205,6 @@ class BulkUsersController extends Controller
         $accessories = DB::table('accessories_users')->whereIn('assigned_to', $user_raw_array)->get();
         $licenses = DB::table('license_seats')->whereIn('assigned_to', $user_raw_array)->get();
         //$consumables = DB::table('consumables_users')->whereIn('assigned_to', $user_raw_array)->get();
-
-        //update isRevoke
-        $consumables = DB::table('consumables_users')->whereIn('assigned_to', $user_raw_array)->update(['is_revoke' => false]);
-
         if ((($assets->count() > 0) && ((!$request->filled('status_id')) || ($request->input('status_id') == '')))) {
             return redirect()->route('users.index')->with('error', 'No status selected');
         }

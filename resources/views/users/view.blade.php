@@ -798,7 +798,6 @@
           </div>
         </div><!-- /accessories-tab -->
         <div class="tab-pane" id="consumables">
-        @if ($user->consumables->first()->pivot->is_revoke == 1)
           <div class="table-responsive">
             <table
                     data-cookie-id-table="userConsumableTable"
@@ -843,9 +842,7 @@
               </tbody>
           </table>
           </div>
-          @else
-          <p>The user's related assets have been revoked!</p>
-          @endif
+  
         </div><!-- /consumables-tab -->
 
         <div class="tab-pane" id="files">
