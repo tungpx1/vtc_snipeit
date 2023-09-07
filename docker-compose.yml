@@ -46,7 +46,12 @@ services:
 
 volumes:
   db: {}
-  logs: {}
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/tungpx/logs
+      o: bind
   source:
     driver: local
     driver_opts:
